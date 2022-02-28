@@ -2,7 +2,7 @@ syntax = "proto2";
 
 package blue.perception;
 
-import "bdprotos/robot/RobotConfig.proto";
+import "rt/proto/libs/libprotos/bdprotos/robot/RobotConfig.proto";
 
 message ArmControlConfig {
   optional double arm_control_cmd_timeout_sec = 3;

@@ -5,7 +5,6 @@ load("@build_stack_rules_proto//rules:proto_compile.bzl", "proto_compile")
 proto_library(
     name = "arm_control_config_proto",
     srcs = ["arm_control_config.proto"],
-    strip_import_prefix = "/rt/proto/libs/libprotos",
     visibility = ["//visibility:public"],
     deps = ["//rt/proto/libs/libprotos/bdprotos/robot:RobotConfig_proto"],
 )
@@ -21,5 +20,8 @@ proto_py_library(
     name = "arm_control_config_py_library",
     srcs = ["arm_control_config_pb2.py"],
     visibility = ["//visibility:public"],
-    deps = ["@com_google_protobuf//:protobuf_python"],
+    deps = [
+        "//rt/proto/libs/libprotos/bdprotos/robot:RobotConfig_py_library",
+        "@com_google_protobuf//:protobuf_python",
+    ],
 )

@@ -5,7 +5,6 @@ load("@build_stack_rules_proto//rules:proto_compile.bzl", "proto_compile")
 proto_library(
     name = "RobotConfig_proto",
     srcs = ["RobotConfig.proto"],
-    strip_import_prefix = "/rt/proto/libs/libprotos",
     visibility = ["//visibility:public"],
 )
 
