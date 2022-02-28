@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package blue.perception;
+
+import "bdprotos/robot/RobotConfig.proto";
+
+message ArmControlConfig {
+  optional double arm_control_cmd_timeout_sec = 3;
+  optional string robot_api_request_prefix = 4;
+}
+
+extend RobotConfig {
+    optional ArmControlConfig arm_control_config = 201900701;
+}
+

@@ -1,0 +1,25 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@build_stack_rules_proto//rules/py:proto_py_library.bzl", "proto_py_library")
+load("@build_stack_rules_proto//rules:proto_compile.bzl", "proto_compile")
+
+proto_library(
+    name = "arm_control_config_proto",
+    srcs = ["arm_control_config.proto"],
+    strip_import_prefix = "/rt/proto/libs/libprotos",
+    visibility = ["//visibility:public"],
+    deps = ["//rt/proto/libs/libprotos/bdprotos/robot:RobotConfig_proto"],
+)
+
+proto_compile(
+    name = "arm_control_config_python_compile",
+    outputs = ["arm_control_config_pb2.py"],
+    plugins = ["@build_stack_rules_proto//plugin/builtin:python"],
+    proto = "arm_control_config_proto",
+)
+
+proto_py_library(
+    name = "arm_control_config_py_library",
+    srcs = ["arm_control_config_pb2.py"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:protobuf_python"],
+)

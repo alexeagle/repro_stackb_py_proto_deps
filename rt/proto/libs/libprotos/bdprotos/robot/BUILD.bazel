@@ -1,0 +1,24 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@build_stack_rules_proto//rules/py:proto_py_library.bzl", "proto_py_library")
+load("@build_stack_rules_proto//rules:proto_compile.bzl", "proto_compile")
+
+proto_library(
+    name = "RobotConfig_proto",
+    srcs = ["RobotConfig.proto"],
+    strip_import_prefix = "/rt/proto/libs/libprotos",
+    visibility = ["//visibility:public"],
+)
+
+proto_compile(
+    name = "RobotConfig_python_compile",
+    outputs = ["RobotConfig_pb2.py"],
+    plugins = ["@build_stack_rules_proto//plugin/builtin:python"],
+    proto = "RobotConfig_proto",
+)
+
+proto_py_library(
+    name = "RobotConfig_py_library",
+    srcs = ["RobotConfig_pb2.py"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:protobuf_python"],
+)
